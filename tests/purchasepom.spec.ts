@@ -25,8 +25,8 @@ for (const { prodName, country } of loginData) {
 
         test.beforeEach(async ({ page }) => {
             poManager = new PageObjectManager(page);
-            await poManager.loginPage.goto(poManager.testData.url);
-            await poManager.loginPage.login(poManager.testData.email, poManager.testData.password);
+            await poManager.loginPage.goto(poManager.constants.url);
+            await poManager.loginPage.login(poManager.constants.email, poManager.constants.password);
             await poManager.loginPage.verifySignin();
         });
 

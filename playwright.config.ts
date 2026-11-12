@@ -14,8 +14,8 @@ export default defineConfig({
   reporter: [
     ['html', {
       open: 'never',
-      outputFolder: `playwright-report-${new Date().toLocaleString()
-        .replaceAll(/[/:, ]/g, '-')}`
+      // outputFolder: `playwright-report-${new Date().toLocaleString()
+      // .replaceAll(/[/:, ]/g, '-')}`
     }],
     // ['dot'],
     // ['json', { outputFile: 'jsonReport.json' }],
