@@ -58,9 +58,6 @@ test("Login to Client Application", async ({ page }) => {
 
     await page.getByText(' Sign Out ').click();
 
-
-
-
     await page.close();
 
 });

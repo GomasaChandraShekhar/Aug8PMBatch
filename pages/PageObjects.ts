@@ -1,6 +1,6 @@
-import { type Page, type Locator, expect } from '@playwright/test';
+import { type Page, type Locator } from '@playwright/test';
 
-export default class LocatorsPage {
+export default class PageObjects {
 
     readonly page: Page;
     readonly registerLink: Locator;
@@ -17,6 +17,10 @@ export default class LocatorsPage {
     readonly registerButton: Locator;
     readonly successMessageBox: Locator;
     readonly successMessage: Locator;
+    readonly userName: Locator;
+    readonly userPassword: Locator;
+    readonly loginButton: Locator;
+    readonly signOutButton: Locator;
     readonly products: Locator;
     readonly prodCards: Locator;
     readonly myCartButton: Locator;
@@ -54,6 +58,10 @@ export default class LocatorsPage {
         this.registerButton = this.page.getByRole('button', { name: 'Register' });
         this.successMessageBox = this.page.getByRole('heading', { name: 'Account Created Successfully' });
         this.successMessage = this.page.locator('app-register');
+        this.userName = this.page.locator('#userEmail');
+        this.userPassword = this.page.locator('#userPassword');
+        this.loginButton = this.page.locator('#login');
+        this.signOutButton = this.page.getByRole('button', { name: 'Sign Out', exact: true });
         this.products = this.page.locator('div.card-body');
         this.prodCards = this.page.locator('div.card-body');
         this.myCartButton = this.page.locator(`button[routerlink*='cart']`);
@@ -76,7 +84,6 @@ export default class LocatorsPage {
 
 
     }
-
 
 
 }

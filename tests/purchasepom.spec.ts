@@ -21,12 +21,12 @@ const loginData: any = readFiles.readJsonFile('./testdata/PlaceOrder.json');
 
 for (const { prodName, country } of loginData) {
 
-    test.describe(`Place Order for the product ${prodName}`, async function () {
+    test.describe(`Place Order for the product ${prodName}`, async () => {
 
         test.beforeEach(async ({ page }) => {
             poManager = new PageObjectManager(page);
-            await poManager.loginPage.goto(poManager.constants.url);
-            await poManager.loginPage.login(poManager.constants.email, poManager.constants.password);
+            await poManager.loginPage.goto(poManager.testData.url);
+            await poManager.loginPage.login(poManager.testData.email, poManager.testData.password);
             await poManager.loginPage.verifySignin();
         });
 
@@ -41,16 +41,16 @@ for (const { prodName, country } of loginData) {
             await poManager.placeOrderPage.clickViewOrdersButton();
         });
 
-        // test(`Place Order for the product ${prodName} verify through Orders History Link`, async ({ page }) => {
-        //     await poManager.placeOrderPage.addProdToCart(prodName);
-        //     await poManager.placeOrderPage.navigateToCart();
-        //     await poManager.placeOrderPage.placeOrder(country);
-        //     orderId = await poManager.placeOrderPage.getOrderId();
-        //     await poManager.placeOrderPage.clickOrderHistoryLink();
-        //     await poManager.placeOrderPage.viewOrder(orderId);
-        //     await poManager.placeOrderPage.verifyOrderInSummaryPage(orderId);
-        //     await poManager.placeOrderPage.clickViewOrdersButton();
-        // });
+        test(`Place Order for the product ${prodName} verify through Orders History Link`, async ({ page }) => {
+            await poManager.placeOrderPage.addProdToCart(prodName);
+            await poManager.placeOrderPage.navigateToCart();
+            await poManager.placeOrderPage.placeOrder(country);
+            orderId = await poManager.placeOrderPage.getOrderId();
+            await poManager.placeOrderPage.clickOrderHistoryLink();
+            await poManager.placeOrderPage.viewOrder(orderId);
+            await poManager.placeOrderPage.verifyOrderInSummaryPage(orderId);
+            await poManager.placeOrderPage.clickViewOrdersButton();
+        });
 
         test.afterEach(async () => {
             await poManager.loginPage.signOut();

@@ -1,7 +1,7 @@
 import { expect, type Page, type Locator } from "@playwright/test";
-import LocatorsPage from './LocatorsPage';
+import PageObjects from './PageObjects';
 
-export default class PlaceOrderPage extends LocatorsPage {
+export default class PlaceOrderPage extends PageObjects {
 
     constructor(page: Page) {
         super(page);
@@ -9,14 +9,14 @@ export default class PlaceOrderPage extends LocatorsPage {
 
     async addProdToCart(prodName: string) {
         await expect.soft(this.prodCards.first()).toBeVisible();
-        // const products = this.prodCards;
-        // const productsCount = await products.count();
-        // for (let i = 0; i < productsCount; i++) {
-        //     if (await products.nth(i).locator("//b").innerText() == prodName) {
-        //         await products.nth(i).locator("//button[text()=' Add To Cart']").click();
-        //         break;
-        //     }
-        // }
+        /*const products = this.prodCards;
+        const productsCount = await products.count();
+        for (let i = 0; i < productsCount; i++) {
+            if (await products.nth(i).locator("//b").innerText() == prodName) {
+                await products.nth(i).locator("//button[text()=' Add To Cart']").click();
+                break;
+            }
+        }*/
 
         for (const prod of await this.prodCards.all()) {
             // console.log(`Product Name :: ${await prod.locator("//b").innerText()}`);
@@ -60,7 +60,7 @@ export default class PlaceOrderPage extends LocatorsPage {
     }
 
     async viewOrder(orderId: string) {
-        // await expect.soft(this.orderIdCol).toContainText(orderId);
+        await expect.soft(this.orderIdCol).toContainText(orderId);
 
         for (const row of await this.rows.all()) {
             const orderIdFromTable = await row.locator('th').innerText();

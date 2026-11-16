@@ -1,46 +1,33 @@
-import { type Page, expect, type Locator } from '@playwright/test';
-import PwUtils from '../utils/PwUtils';
+import { type Page, expect } from '@playwright/test';
+import PageObjects from './PageObjects';
 
-const pwUtils = new PwUtils();
-
-export default class LoginPage extends PwUtils {
-
-  readonly page: Page;
-  readonly userName: Locator;
-  readonly userPassword: Locator;
-  readonly loginButton: Locator;
-  readonly signOutButton: Locator;
+export default class LoginPage extends PageObjects {
 
   constructor(page: Page) {
-    super();
-    this.page = page;
-    this.userName = this.page.locator('#userEmail');
-    this.userPassword = this.page.locator('#userPassword');
-    this.loginButton = this.page.locator('#login');
-    this.signOutButton = this.page.getByRole('button', { name: 'Sign Out', exact: true });
+    super(page);
   }
 
   async goto(url: string) {
     await this.page.goto(url);
-    await pwUtils.toBeVisible(this.loginButton);
+    await expect.soft(this.loginButton).toBeVisible();
   }
 
   async login(email: string, password: string) {
-    await pwUtils.fill(this.userName, email);
-    await pwUtils.fill(this.userPassword, password);
-    await pwUtils.click(this.loginButton);
+    await this.userName.fill(email);
+    await this.userPassword.fill(password);
+    await this.loginButton.click();
   }
 
   async verifySignin() {
-    await pwUtils.toBeVisible(this.signOutButton);
+    await expect.soft(this.signOutButton).toBeVisible();
   }
 
   async signOut() {
-    await pwUtils.click(this.signOutButton);
+    await this.signOutButton.click();
   }
 
   async verifySignOut() {
-    await pwUtils.toBeVisible(this.loginButton);
+    await expect.soft(this.loginButton).toBeVisible();
   }
 
 

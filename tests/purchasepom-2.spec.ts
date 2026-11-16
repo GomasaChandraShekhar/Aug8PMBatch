@@ -20,17 +20,16 @@ for (const { prodName, country } of loginData) {
             poManager = new PageObjectManager(page);
             await poManager.loginPage.goto(poManager.constants.url);
             await poManager.loginPage.login(poManager.constants.email, poManager.constants.password);
-            await poManager.loginPage.verifySignin();
         });
 
-        test.afterEach(async ({ }) => {
-            await poManager.loginPage.signOut();
-            await poManager.loginPage.verifySignOut();
-        });
+        // test.afterEach(async ({ }) => {
+        //     await poManager.loginPage.signOut();
+        // });
 
         test(`Place Order for the product ${prodName} verify through Orders Button`, async ({ page }) => {
 
             test.step('Add prod to cart', async () => {
+                await page.pause();
                 await poManager.placeOrderPage.addProdToCart(prodName);
             });
 
@@ -38,41 +37,17 @@ for (const { prodName, country } of loginData) {
                 await poManager.placeOrderPage.navigateToCart();
             });
 
-            test.step('Place order', async () => {
-                await poManager.placeOrderPage.placeOrder(country);
-                orderId = await poManager.placeOrderPage.getOrderId();
-            });
+            // test.step('Place order', async () => {
+            //     await poManager.placeOrderPage.placeOrder(country);
+            //     orderId = await poManager.placeOrderPage.getOrderId();
+            // });
 
-            test.step('Verify order details', async () => {
-                await poManager.placeOrderPage.navigateToOrders();
-                await poManager.placeOrderPage.viewOrder(orderId);
-                await poManager.placeOrderPage.verifyOrderInSummaryPage(orderId);
-                await poManager.placeOrderPage.clickViewOrdersButton();
-            });
-
-        });
-
-        test(`Place Order for the product ${prodName} verify through Orders History Link`, async ({ page }) => {
-
-            test.step('Add prod to cart', async () => {
-                await poManager.placeOrderPage.addProdToCart(prodName);
-            });
-
-            test.step('Navigate to cart page', async () => {
-                await poManager.placeOrderPage.navigateToCart();
-            });
-
-            test.step('Place order', async () => {
-                await poManager.placeOrderPage.placeOrder(country);
-                orderId = await poManager.placeOrderPage.getOrderId();
-            });
-
-            test.step('Verify order details', async () => {
-                await poManager.placeOrderPage.clickOrderHistoryLink();
-                await poManager.placeOrderPage.viewOrder(orderId);
-                await poManager.placeOrderPage.verifyOrderInSummaryPage(orderId);
-                await poManager.placeOrderPage.clickViewOrdersButton();
-            });
+            // test.step('Verify order details', async () => {
+            //     await poManager.placeOrderPage.navigateToOrders();
+            //     await poManager.placeOrderPage.viewOrder(orderId);
+            //     await poManager.placeOrderPage.verifyOrderInSummaryPage(orderId);
+            //     await poManager.placeOrderPage.clickViewOrdersButton();
+            // });
 
         });
 

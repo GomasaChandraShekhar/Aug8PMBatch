@@ -1,21 +1,21 @@
 import { type Page } from '@playwright/test';
 import LoginPage from "./LoginPage";
 import PlaceOrderPage from "./PlaceOrderPage";
-import Constants from '../testdata/Constants';
+import TestData from '../testdata/TestData';
 
 export default class PageObjectManager {
 
     readonly page: Page;
     readonly loginPage: LoginPage;
     readonly placeOrderPage: PlaceOrderPage;
-    readonly constants: Constants;
+    readonly testData: TestData;
 
 
     constructor(page: Page) {
         this.page = page;
         this.loginPage = new LoginPage(this.page);
         this.placeOrderPage = new PlaceOrderPage(this.page);
-        this.constants = new Constants();
+        this.testData = new TestData();
     }
 
 
