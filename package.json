@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "allSpecs": "npx playwright test",
+    "regression": "npx playwright test --grep='@Regression'",
+    "smoke": "npx playwright test --grep='@Smoke'",
+    "purchase": "npx playwright test purchasepom.spec.ts --headed"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

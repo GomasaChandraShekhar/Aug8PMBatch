@@ -18,18 +18,17 @@ for (const { prodName, country } of loginData) {
 
         test.beforeEach(async ({ page }) => {
             poManager = new PageObjectManager(page);
-            await poManager.loginPage.goto(poManager.constants.url);
-            await poManager.loginPage.login(poManager.constants.email, poManager.constants.password);
+            await poManager.loginPage.goto(poManager.testData.url);
+            await poManager.loginPage.login(poManager.testData.email, poManager.testData.password);
         });
 
-        // test.afterEach(async ({ }) => {
-        //     await poManager.loginPage.signOut();
-        // });
+        test.afterEach(async ({ }) => {
+            await poManager.loginPage.signOut();
+        });
 
         test(`Place Order for the product ${prodName} verify through Orders Button`, async ({ page }) => {
 
             test.step('Add prod to cart', async () => {
-                await page.pause();
                 await poManager.placeOrderPage.addProdToCart(prodName);
             });
 

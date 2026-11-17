@@ -3,7 +3,7 @@ import PageObjectManager from '../pages/PageObjectManager';
 import ReadFiles from '../utils/ReadFiles';
 
 let poManager: PageObjectManager;
-const readFiles: ReadFiles = new ReadFiles();;
+const readFiles: ReadFiles = new ReadFiles();
 let orderId: string;
 
 // const loginData = [
@@ -30,27 +30,29 @@ for (const { prodName, country } of loginData) {
             await poManager.loginPage.verifySignin();
         });
 
-        test(`Place Order for the product ${prodName} verify through Orders Page`, async ({ page }) => {
-            await poManager.placeOrderPage.addProdToCart(prodName);
-            await poManager.placeOrderPage.navigateToCart();
-            await poManager.placeOrderPage.placeOrder(country);
-            orderId = await poManager.placeOrderPage.getOrderId();
-            await poManager.placeOrderPage.navigateToOrders();
-            await poManager.placeOrderPage.viewOrder(orderId);
-            await poManager.placeOrderPage.verifyOrderInSummaryPage(orderId);
-            await poManager.placeOrderPage.clickViewOrdersButton();
-        });
+        test(`Place Order for the product ${prodName} verify through Orders Page`, { tag: '@Regression' },
+            async ({ page }) => {
+                await poManager.placeOrderPage.addProdToCart(prodName);
+                await poManager.placeOrderPage.navigateToCart();
+                await poManager.placeOrderPage.placeOrder(country);
+                orderId = await poManager.placeOrderPage.getOrderId();
+                await poManager.placeOrderPage.navigateToOrders();
+                await poManager.placeOrderPage.viewOrder(orderId);
+                await poManager.placeOrderPage.verifyOrderInSummaryPage(orderId);
+                await poManager.placeOrderPage.clickViewOrdersButton();
+            });
 
-        test(`Place Order for the product ${prodName} verify through Orders History Link`, async ({ page }) => {
-            await poManager.placeOrderPage.addProdToCart(prodName);
-            await poManager.placeOrderPage.navigateToCart();
-            await poManager.placeOrderPage.placeOrder(country);
-            orderId = await poManager.placeOrderPage.getOrderId();
-            await poManager.placeOrderPage.clickOrderHistoryLink();
-            await poManager.placeOrderPage.viewOrder(orderId);
-            await poManager.placeOrderPage.verifyOrderInSummaryPage(orderId);
-            await poManager.placeOrderPage.clickViewOrdersButton();
-        });
+        test(`Place Order for the product ${prodName} verify through Orders History Link`, { tag: '@Smoke' },
+            async ({ page }) => {
+                await poManager.placeOrderPage.addProdToCart(prodName);
+                await poManager.placeOrderPage.navigateToCart();
+                await poManager.placeOrderPage.placeOrder(country);
+                orderId = await poManager.placeOrderPage.getOrderId();
+                await poManager.placeOrderPage.clickOrderHistoryLink();
+                await poManager.placeOrderPage.viewOrder(orderId);
+                await poManager.placeOrderPage.verifyOrderInSummaryPage(orderId);
+                await poManager.placeOrderPage.clickViewOrdersButton();
+            });
 
         test.afterEach(async () => {
             await poManager.loginPage.signOut();

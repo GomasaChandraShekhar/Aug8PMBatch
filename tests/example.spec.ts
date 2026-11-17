@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 let expectedTitle: string = "STORE";
 
-test("Test_02", async ({ page }) => {
+test.only("Test_02", async ({ page }) => {
 
   await page.goto('https://demoblaze.com/');
   await page.waitForLoadState('domcontentloaded');
@@ -18,7 +18,6 @@ test("Test_02", async ({ page }) => {
   await page.waitForLoadState('domcontentloaded');
 
   await page.close();
-
 
 });
 
