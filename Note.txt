@@ -1089,15 +1089,40 @@ OrderSummaryPage
 Locators :: Elements to perform action
 Function :: Action to be implement on the lements
 
+=========================================================
+
+Faker data Generation :: 
+
+npm install -D @faker-js/faker
 
 
+=========================================================
+
+18-Nov-2026
+
+API :: HTTP Methods :: 
+
+Post :: To create data in server/database.
+Get :: To retrieve data from server.
+Put :: To full update the data in the server.
+Patch :: To partially update the data in the server.
+Delete :: To delete the data from the server.
+
+Postman :: Manual testing of API's
+Playwright :: Automation testing of API's.
+
+=========================================================
+
+20-Nov-2026
+
+API : request fixture
 
 
+fully update :: put
 
+partial update :: patch
 
-
-
-
+API Response Codes ::   https://restapitutorial.com/httpstatuscodes
 
 
 
