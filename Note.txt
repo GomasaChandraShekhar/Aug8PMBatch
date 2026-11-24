@@ -1125,7 +1125,10 @@ partial update :: patch
 API Response Codes ::   https://restapitutorial.com/httpstatuscodes
 
 
+Api chaining :: combining multple api requests.
 
+
+post().josn()
 
 
 

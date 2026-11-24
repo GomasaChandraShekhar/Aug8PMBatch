@@ -126,11 +126,11 @@ export default class ApiUtils {
      * @param payLoad - request body
      * @returns - Returns api response
      */
-    async createCollectionObject(url: string, payLoad: unknown): Promise<APIResponse> {
+    async createCollectionObject(url: string, payLoad: unknown, key: string): Promise<APIResponse> {
         return await this.apiContext.post(url, {
             data: payLoad,
             headers: {
-                "x-api-key": "b02d68ca-2fa2-49c6-9ae4-94d07e25d37a",
+                "x-api-key": `${key}`,
                 "Content-Type": "application/json"
             }
         });
@@ -145,10 +145,10 @@ export default class ApiUtils {
         * This function retrieves only one object from the server using Id.
         * 
         */
-    async getOneObjectFromCollection(url: string, id: string): Promise<APIResponse> {
+    async getOneObjectFromCollection(url: string, id: string, key: string): Promise<APIResponse> {
         return await this.apiContext.get(`${url}/${id}`, {
             headers: {
-                "x-api-key": "b02d68ca-2fa2-49c6-9ae4-94d07e25d37a"
+                "x-api-key": `${key}`
             }
         });
     }

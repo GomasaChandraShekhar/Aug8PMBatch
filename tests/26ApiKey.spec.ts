@@ -9,6 +9,7 @@ let apiContext: APIRequestContext;
 let apiResponse: APIResponse;
 let apiUtils: ApiUtils;
 let jsonResponse: any;
+const key: string = 'b02d68ca-2fa2-49c6-9ae4-94d07e25d37a';
 const cpuModel = 'CPU model';
 const hardDisk = 'Hard disk size';
 
@@ -49,7 +50,7 @@ test("Create new object", async () => {
     // apiContext = await playwright.request.newContext();
     // apiUtils = new ApiUtils(apiContext);
 
-    apiResponse = await apiUtils.createCollectionObject(`${baseUrl}${mobilesColl}`, postPayload);
+    apiResponse = await apiUtils.createCollectionObject(`${baseUrl}${mobilesColl}`, postPayload, key);
 
     console.log(apiResponse.status()); // 200
     console.log(apiResponse.statusText()); // OK
@@ -71,7 +72,7 @@ test("Create new object", async () => {
 
 test("Get the created object", async () => {
     // apiContext = await playwright.request.newContext();
-    apiResponse = await apiUtils.getOneObjectFromCollection(`${baseUrl}${mobilesColl}`, jsonResponse.id);
+    apiResponse = await apiUtils.getOneObjectFromCollection(`${baseUrl}${mobilesColl}`, jsonResponse.id, key);
 
     console.log(apiResponse.status()); // 200
     console.log(apiResponse.statusText()); // OK
