@@ -1163,12 +1163,29 @@ git clone :: To copy github repository into our local repository
 
 git pull :: get code from github repository into local
 
+
+git remote add main <url> :: to create communication between remote repo and local repo.
+Example :: git remote add main https://github.com/GomasaChandraShekhar/Aug8PMBatch :: 
+
+
+git branch --set-upstream-to=<remote branch> <local branch> :: to create communication between local branch and remote repo branch.
+Example :: git branch --set-upstream-to=main master
+
+git checkout -b <branchName> :: to create and switch to new branch 
+
+
+
+
+
+
+
+
+
 git status :: get modified files
 
 git add <fileName> :: to add file to remote repo.
 
-
-
+git commit -m "message" :: 
 
 
 
