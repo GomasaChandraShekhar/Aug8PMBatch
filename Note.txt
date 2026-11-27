@@ -1131,6 +1131,46 @@ Api chaining :: combining multple api requests.
 post().josn()
 
 
+===========================
+
+25 Nov 2026
+
+BDD :: Behaviour Driven Development :: 
+
+User stories :: 
+
+Feature: Transactions 
+
+Given :: some functionality
+When: user perfomrs some action
+And: performed snother action
+Then: Got some output
+But: output is partially correct
+
+Cucumber :: 
+
+===================================
+
+GitHub :: cloud repository - 
+
+a1, a2, a3
+
+Git :: 
+
+git init :: to init local git repository
+
+git clone :: To copy github repository into our local repository
+
+git pull :: get code from github repository into local
+
+git status :: get modified files
+
+git add <fileName> :: to add file to remote repo.
+
+
+
+
+
 
 
 
