@@ -1173,21 +1173,13 @@ Example :: git branch --set-upstream-to=main master
 
 git checkout -b <branchName> :: to create and switch to new branch 
 
-
-
-
-
-
-
-
-
 git status :: get modified files
 
 git add <fileName> :: to add file to remote repo.
 
 git commit -m "message" :: 
 
-
+git push :: to push code to remote repo.
 
 
 
